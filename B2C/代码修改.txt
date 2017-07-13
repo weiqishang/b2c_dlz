@@ -1,0 +1,54 @@
+这个是自定义选项那个
+$('.opt ul li').each(function() {
+		$(this).click(function() {
+			if($(this).hasClass('havenone')) {
+				return false
+			} else {
+				$(this).addClass('selopt').siblings().removeClass('selopt')
+				var opttext = $(this).text()
+				$(this).parents('ul').siblings('.option-show').text(opttext)
+			}
+		})
+	})
+
+这个是规格那个
+
+	$(".size-gg select").bind('change', function() {
+		var showsize =  $(this).find('option:selected').text()
+		var content = $(".size-gg select").children('option').eq(0).html()
+		var content_last = $(".size-gg select").children('option:last-child').html()
+		if(showsize == content || showsize == content_last) {
+			$(this).parents('.size-gg').siblings('.size-title').children('.show-size').text("")
+		} else {
+			$(this).parents('.size-gg').siblings('.size-title').children('.show-size').text(showsize)
+		}
+	})
+这个是颜色那个
+	function colorimg() {
+		$('.color-img li').each(function() {
+			$(this).hover(function() {
+				if($(this).hasClass('nohave')) {
+					return false
+				} else {
+					$(this).addClass('choose-img')
+					$(".jqzoom").attr('src', $(this).find("img").attr("mid"));
+					$(".jqzoom").attr('rel', $(this).find("img").attr("big"));
+				}
+			}, function() {
+				$(this).removeClass('choose-img')
+			})
+			$(this).click(function() {
+				if($(this).hasClass('nohave')) {
+					return false
+				} else {
+					var colortitle = $(this).attr('title')
+					$(this).parents('.color-img').siblings('div').children('.showcolor').text(colortitle)
+					$(this).addClass('choose-img').siblings().removeClass('choose-img')
+					$(this).hover(function() {}, function() {
+						$(this).addClass('choose-img').siblings().removeClass('choose-img')
+					})
+				}
+			})
+		})
+	}
+	colorimg()
